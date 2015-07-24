@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BattleApp</string>
+    <string name="versus">VS</string>
+    <string name="live_matching_game">Live Matching</string>
+    <string name="title_activity_schedule">Schedule</string>
+    <string name="title_activity_league">Live Leagues</string>
+    <string name="title_activity_player">Players</string>
+    <string name="title_activity_playerInfo">Player Information</string>
+    <string name="title_activity_leagueList">LeagueArchive</string>
+    <string name="title_activity_leagueArchive">Archive</string>
+    <string name="title_activity_virtualMatching">Virtual Matching</string>
+</resources>
