@@ -56,7 +56,7 @@
         </activity>
 
         <!-- 리그 스케쥴 정보 Activity -->
-        <!-- android:maxRecents="3" 설계 의도를 다시한번 검토해주세요-->
+        <!-- android:maxRecents="3" 설계 의도를 다시한번 검토해주세요 -->
         <activity
             android:name=".ScheduleActivity"
             android:label="@string/title_activity_schedule"
