@@ -1,7 +1,10 @@
 package org.nhnnext.android.battleapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * Created by mocca on 2015. 7. 21..
@@ -14,32 +17,73 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //TODO 각 Activity로 이동하는 버튼 이벤트 리스너 구현
+        setButtonEvent();
     }
 
     @Override
     protected void onStart() {
+        super.onStart();
         //TODO 현재 진행중인 경기정보 요청 (다른 Activity에서 현재 Activity로 돌아왔을 때 갱신되어야 하므로)
     }
 
     @Override
     protected void onResume() {
-
+        super.onResume();
     }
 
     @Override
     protected void onPause() {
-
+        super.onPause();
     }
 
     @Override
     protected void onStop() {
-
+        super.onStop();
     }
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
+    }
 
+    /**
+     * 화면의 버튼에 대해 리스너를 세팅하는 메서드
+     */
+    private void setButtonEvent() {
+        Button scheduleBtn = (Button) findViewById(R.id.scheduleBtn);
+        scheduleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomAction.ACTION_SCHEDULE));
+            }
+        });
+        Button leagueBtn = (Button) findViewById(R.id.leagueBtn);
+        leagueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomAction.ACTION_LEAGUE));
+            }
+        });
+        Button playerBtn = (Button) findViewById(R.id.playerBtn);
+        playerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomAction.ACTION_PLAYER));
+            }
+        });
+        Button archiveBtn = (Button) findViewById(R.id.archiveBtn);
+        archiveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomAction.ACTION_LEAGUELIST));
+            }
+        });
+        Button matchingBtn = (Button) findViewById(R.id.matchingBtn);
+        matchingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomAction.ACTION_MATCHING));
+            }
+        });
     }
 }

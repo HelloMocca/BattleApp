@@ -13,32 +13,32 @@ public class ScheduleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-
         //TODO 경기일정 데이터 요청 메서드 호출
     }
 
     @Override
     protected void onStart() {
+        super.onStart();
     }
 
     @Override
     protected void onResume() {
-
+        super.onResume();
     }
 
     @Override
     protected void onPause() {
-
+        super.onPause();
     }
 
     @Override
     protected void onStop() {
-
+        super.onStop();
     }
 
     @Override
     protected void onDestroy() {
-
+        super.onDestroy();
     }
 
     /**
