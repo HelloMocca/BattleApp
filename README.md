@@ -8,8 +8,13 @@ targetVersion: 22
 
 
 ##Version History
+_[Latest Version] 0.1.1_
+* Implement Button onClickLister to startActivity (MainActivity -> OtherActivities)
+* Modify MainActivity's export attribute to "true"
+* Modify MaxRecent value 3 to 1 (The BattleApp must be 'One' task)
+* Published 27 July, 2015
 
-[Latest Version] 0.0.1
+_0.0.1_
 * Initialize the BattleApp Project
 * Add Activities
   * MainActivity
