@@ -8,13 +8,20 @@ targetVersion: 22
 
 
 ##Version History
-_[Latest Version] 0.1.1_
+__[Latest Version] 0.2.1__
+* Define All Layout of Activities
+* Add Fragments Layout and Fragment Subclass for Matching Activity
+  * PlayerListFragment
+  * MatchingResultFragment
+*Published 28 July, 2015
+
+__0.1.1__
 * Implement Button onClickLister to startActivity (MainActivity -> OtherActivities)
 * Modify MainActivity's export attribute to "true"
 * Modify MaxRecent value 3 to 1 (The BattleApp must be 'One' task)
 * Published 27 July, 2015
 
-_0.0.1_
+__0.0.1__
 * Initialize the BattleApp Project
 * Add Activities
   * MainActivity

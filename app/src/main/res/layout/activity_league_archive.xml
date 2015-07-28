@@ -4,9 +4,41 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="리그경기기록"/>
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/league_logo"
+            android:layout_width="150dp"
+            android:layout_height="80dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/league_title"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015 GSL Season 3"/>
+            <TextView
+                android:id="@+id/league_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2015.07.01 ~ 2015.08.03"/>
+            <TextView
+                android:id="@+id/league_winner"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정명훈"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/league_archive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
 </LinearLayout>

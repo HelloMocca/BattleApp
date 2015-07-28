@@ -1,12 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="경기예측"/>
+        android:orientation="vertical"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/player1_search"
+                android:layout_width="280dp"
+                android:layout_height="50dp" />
+            <Button
+                android:id="@+id/player1_search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="검색"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/player2_search"
+                android:layout_width="280dp"
+                android:layout_height="50dp" />
+            <Button
+                android:id="@+id/player2_search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="검색"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <fragment
+            android:name="org.nhnnext.android.battleapp.PlayerListFragment"
+            android:id="@+id/match_player_fragment"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_playerlist">
+        </fragment>
+        <fragment
+            android:name="org.nhnnext.android.battleapp.MatchingResultFragment"
+            android:id="@+id/match_result_fragment"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_match_result">
+        </fragment>
+    </LinearLayout>
 </LinearLayout>
