@@ -8,12 +8,24 @@ targetVersion: 22
 
 
 ##Version History
-__[Latest Version] 0.2.1__
+__[Latest Version] 0.3.1__
+* Implement activity change from MainActivity to others
+* Create Dummy Views (not connected to Network yet)
+  * ListView of PlayerActivity
+  * View of PlayerInfoActivity
+  * ListView of LeagueListActivity
+  * ListView of LeagueArchiveActivity
+* Implement getViews and setViewEvent to each Activities
+  * getViews: Initialization Views(ListView, EditText, Button ...)
+  * setViewEvent: Setting click event on Buttons or Items of ListView
+* Published 6 August, 2015
+
+__0.2.1__
 * Define All Layout of Activities
 * Add Fragments Layout and Fragment Subclass for Matching Activity
   * PlayerListFragment
   * MatchingResultFragment
-*Published 28 July, 2015
+* Published 28 July, 2015
 
 __0.1.1__
 * Implement Button onClickLister to startActivity (MainActivity -> OtherActivities)
