@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -39,25 +38,9 @@
                 android:text="검색"/>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/matching_activity_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <fragment
-            android:name="org.nhnnext.android.battleapp.PlayerListFragment"
-            android:id="@+id/match_player_fragment"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            tools:layout="@layout/fragment_playerlist">
-        </fragment>
-        <fragment
-            android:name="org.nhnnext.android.battleapp.MatchingResultFragment"
-            android:id="@+id/match_result_fragment"
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            tools:layout="@layout/fragment_match_result">
-        </fragment>
-    </LinearLayout>
+        android:layout_height="wrap_content">
+    </FrameLayout>
 </LinearLayout>

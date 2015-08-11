@@ -1,6 +1,6 @@
 #BattleApp
 BattleApp serves information of Starcraft League in Korea Republic of, written in Android SDK / Java. This Android Application Project developed as Android Studio IDE.
-See more information and fork at https://hellomocca.github.io/BattleApp.git
+See more information and fork at https://github.com/HelloMocca/BattleApp.git
 
 ##Support Version
 minSdkVersion: 16
@@ -8,7 +8,21 @@ targetVersion: 22
 
 
 ##Version History
-__[Latest Version] 0.3.1__
+__[Latest Version] 0.4.1__
+* Remove Title Bar
+* Create Dummy Views (not connected to Network yet)
+  * MatchingActivity
+  * MatchingResultFragment
+  * PlayerListFragment
+* Create Parcelable class "Player" for transfer Player Information
+* Create customView "BarChart"
+  * Using Canvas
+  * Drawing diversing chart of Matching Result as FieldData
+* Create class FieldData
+  * FieldData contains FieldName and Columns(String Array)
+* Published 11 August, 2015
+
+__0.3.1__
 * Implement activity change from MainActivity to others
 * Create Dummy Views (not connected to Network yet)
   * ListView of PlayerActivity

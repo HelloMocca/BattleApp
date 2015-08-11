@@ -15,4 +15,7 @@
     <string name="default_text_player_race">Terran</string>
     <string name="default_text_player_team">KT Rolster</string>
     <string name="default_text_player_country">KOREA</string>
+    <string name="label_player_name">선수이름</string>
+    <string name="label_player_id">아이디</string>
+    <string name="label_player_team">소속</string>
 </resources>

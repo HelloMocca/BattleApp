@@ -5,12 +5,14 @@ package org.nhnnext.android.battleapp;
  * 선택한 선수의 정보를 제공하는 Activity
  */
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.net.Uri;
 
 public class PlayerInfoActivity extends Activity {
 
@@ -59,6 +61,9 @@ public class PlayerInfoActivity extends Activity {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 //외부 동영상 링크
+                Uri uri = Uri.parse("http://sports.news.naver.com/videoCenter/index.nhn?uCategory=esports&category=starcraft2&id=139547&redirect=true");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }
