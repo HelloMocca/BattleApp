@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">BattleApp</string>
     <string name="versus">VS</string>
-    <string name="live_matching_game">Live Matching</string>
+    <string name="live_matching_game">Now Live</string>
+    <string name="text_search_btn">Search</string>
     <string name="title_activity_schedule">Schedule</string>
     <string name="title_activity_league">Live Leagues</string>
     <string name="title_activity_player">Players</string>

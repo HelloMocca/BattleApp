@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by mocca on 2015. 7. 21..
@@ -50,35 +50,35 @@ public class MainActivity extends Activity {
      * 화면의 버튼에 대해 리스너를 세팅하는 메서드
      */
     private void setButtonEvent() {
-        Button scheduleBtn = (Button) findViewById(R.id.scheduleBtn);
+        ImageButton scheduleBtn = (ImageButton) findViewById(R.id.scheduleBtn);
         scheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomAction.ACTION_SCHEDULE));
             }
         });
-        Button leagueBtn = (Button) findViewById(R.id.leagueBtn);
+        ImageButton leagueBtn = (ImageButton) findViewById(R.id.leagueBtn);
         leagueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomAction.ACTION_LEAGUE));
             }
         });
-        Button playerBtn = (Button) findViewById(R.id.playerBtn);
+        ImageButton playerBtn = (ImageButton) findViewById(R.id.playerBtn);
         playerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomAction.ACTION_PLAYER));
             }
         });
-        Button archiveBtn = (Button) findViewById(R.id.archiveBtn);
+        ImageButton archiveBtn = (ImageButton) findViewById(R.id.archiveBtn);
         archiveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomAction.ACTION_LEAGUELIST));
             }
         });
-        Button matchingBtn = (Button) findViewById(R.id.matchingBtn);
+        ImageButton matchingBtn = (ImageButton) findViewById(R.id.matchingBtn);
         matchingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

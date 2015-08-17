@@ -75,7 +75,11 @@ public class PlayerActivity extends Activity {
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
-                startActivity(new Intent(CustomAction.ACTION_PLAYERINFO));
+                Intent intent = new Intent(CustomAction.ACTION_PLAYERINFO);
+                Bundle args = new Bundle();
+                args.putParcelable("player", new Player(1, "이영호", "Flash", "Terran", "KT Rolster", 1));
+                intent.putExtras(args);
+                startActivity(intent);
             }
         });
     }

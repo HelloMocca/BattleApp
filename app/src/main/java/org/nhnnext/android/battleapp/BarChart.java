@@ -1,5 +1,7 @@
 package org.nhnnext.android.battleapp;
 
+import android.animation.ValueAnimator;
+import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
@@ -20,9 +22,9 @@ public class BarChart extends View {
     private int PADDING = 10;
     private Paint paint;
     private Canvas canvas;
-    private float value = 50;
-    private float destValue = 0;
+    private ValueAnimator valueAnimator;
     private List<FieldData> fieldDataList = new ArrayList<>();
+    private List<Bar> barList = new ArrayList<>();
 
     public BarChart(Context context) {
         super(context);
@@ -50,51 +52,127 @@ public class BarChart extends View {
 
     public void setItems(List<FieldData> fieldDataList) {
         this.fieldDataList = fieldDataList;
-        invalidate();
+        makeBars();
+        animationDraw();
     }
 
+    public void makeBars() {
+        int i;
+        FieldData currFd;
+        String[] columns;
+        for (i = 0; i < fieldDataList.size(); i++) {
+            currFd = fieldDataList.get(i);
+            columns = currFd.getColumns();
+            barList.add(new Bar(currFd.getFieldName(), columns[1], columns[2], 0, Float.parseFloat(columns[0])));
+        }
+    }
 
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int currBaseLine, i = 0;
-        for (i = 0; i < fieldDataList.size(); i++) {
+        for (i = 0; i < barList.size(); i++) {
             currBaseLine = i*(BAR_MARGIN+BAR_HEIGHT);
-            FieldData currData = fieldDataList.get(i);
-            String[] columns = currData.getColumns();
-            paint.setColor(Color.parseColor("#6799FF"));
+            Bar bar = barList.get(i);
+            paint.setColor(Color.parseColor("#605CD1E5"));
             canvas.drawRect(0, currBaseLine, getWidth(), currBaseLine + BAR_HEIGHT, paint);
-            paint.setColor(Color.parseColor("#F15F5F"));
-            canvas.drawRect(0, currBaseLine, getWidth() * (Float.parseFloat(columns[0])/100), currBaseLine + BAR_HEIGHT, paint);
+            paint.setColor(Color.parseColor("#60F361DC"));
+            canvas.drawRect(0, currBaseLine, getWidth() * (bar.getCurrValue()/100), currBaseLine + BAR_HEIGHT, paint);
             paint.setTextSize(60);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(Color.YELLOW);
-            canvas.drawText(currData.getFieldName(), this.getMeasuredWidth()/2, currBaseLine+BAR_HEIGHT-10, paint);
+            canvas.drawText(bar.getTitle(), this.getMeasuredWidth()/2, currBaseLine+BAR_HEIGHT-10, paint);
             paint.setColor(Color.WHITE);
             paint.setTextSize(50);
-            if (!columns[1].equals("")) {
+            if (!bar.getLeftWord().equals("")) {
                 paint.setTextAlign(Paint.Align.LEFT);
-                canvas.drawText(columns[1], PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
+                canvas.drawText(bar.getRightWord(), PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
             }
-            if (!columns[2].equals("")) {
+            if (!bar.getRightWord().equals("")) {
                 paint.setTextAlign(Paint.Align.RIGHT);
-                canvas.drawText(columns[2], this.getMeasuredWidth()-PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
+                canvas.drawText(bar.getLeftWord(), this.getMeasuredWidth()-PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
             }
         }
     }
 
     private void animationDraw() {
-        float distance;
-        while (value != destValue) {
-            distance = destValue - value;
-            value += distance / 125;
-            if (distance < 0.5) value = destValue;
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                //TODO DEBUG LOG
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        valueAnimator = ValueAnimator.ofFloat(0, 1);
+        valueAnimator.setDuration(2500);
+        valueAnimator.addUpdateListener(new AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float frac = animation.getAnimatedFraction();
+
+                for (Bar bar : barList) {
+                    bar.setCurrValue(bar.getGoalValue() * frac);
+                }
+                // run on UI Thread
+                postInvalidate();
             }
-            postInvalidate();   // run on UI Thread
+        });
+        valueAnimator.start();
+    }
+
+    class Bar {
+        private String title;
+        private String leftWord;
+        private String rightWord;
+        private float currValue;
+        private float goalValue;
+
+        public Bar(String title, float currValue, float goalValue) {
+            this(title, "", "", currValue, goalValue);
+        }
+
+        public Bar(String title, String leftWord, String rightWord, float currValue, float goalValue) {
+            this.title = title;
+            this.leftWord = leftWord;
+            this.rightWord = rightWord;
+            this.currValue = currValue;
+            this.goalValue = goalValue;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public void setLeftWord(String leftWord) {
+            this.leftWord = leftWord;
+        }
+
+        public void setRightWord(String rightWord) {
+            this.rightWord = rightWord;
+        }
+
+        public void setCurrValue(float currValue) {
+            this.currValue = currValue;
+        }
+
+        public void setGoalValue(float goalValue) {
+            this.goalValue = goalValue;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getLeftWord() {
+            return leftWord;
+        }
+
+        public String getRightWord() {
+            return rightWord;
+        }
+
+        public float getCurrValue() {
+            return currValue;
+        }
+
+        public float getGoalValue() {
+            return goalValue;
         }
     }
 }
