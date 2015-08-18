@@ -1,11 +1,9 @@
 package org.nhnnext.android.battleapp;
 
-import java.util.List;
 import java.util.ArrayList;
 import android.support.v4.app.ListFragment;
 import android.app.Activity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.os.Bundle;
 
@@ -18,7 +16,7 @@ public class PlayerListFragment extends ListFragment {
 
     OnPlayerSelectedListener mCallback;
     final static String QUERY = "query";
-    private List<Player> players;
+    private ArrayList<Player> players;
 
     public interface OnPlayerSelectedListener {
         void onPlayerSelected(Player player);
@@ -94,7 +92,6 @@ public class PlayerListFragment extends ListFragment {
 
     private void onSearch(String query) {
         //TODO 유저를 찾는 AsyncTask
-        String[] playerList;
         players = new ArrayList<>();
         if (query.equals("player1")) {
             players.add(new Player(0,"이승현","Life","Zerg","KT Rolster", 3));
@@ -103,32 +100,17 @@ public class PlayerListFragment extends ListFragment {
             players.add(new Player(3,"이제동","JAEDONG","Zerg","Evil Genius", 0));
             players.add(new Player(4,"이주경","Sona","Terran","CJ ENTUS", 0));
             players.add(new Player(5,"원이삭","Parting","Protoss","Yoe Flash Wolves", 1));
-            playerList = new String[]{
-                    "이승현",
-                    "이영호",
-                    "이원표",
-                    "이제동",
-                    "이주경",
-                    "원이삭",
-            };
         } else {
             players.add(new Player(6,"김대엽","Stats","Protoss","KT Rolster", 0));
             players.add(new Player(7,"김도우","Classic","Protoss","SKT T1", 1));
             players.add(new Player(8,"김명식","MyuNgSiK","Protoss","SBENU", 0));
             players.add(new Player(9,"김준호","herO","Protoss","CJ ENTUS", 0));
             players.add(new Player(10,"김유진","sOs","Protoss","JINAIR Greenwings", 0));
-            playerList = new String[]{
-                    "김대엽",
-                    "김도우",
-                    "김명식",
-                    "김준호",
-                    "김유진",
-            };
         }
-        updatePlayerList(playerList);
+        updatePlayerList();
     }
 
-    private void updatePlayerList(String[] playerList) {
-        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, playerList));
+    private void updatePlayerList() {
+        setListAdapter(new PlayerListAdapter(getActivity(), players));
     }
 }

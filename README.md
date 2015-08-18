@@ -8,7 +8,12 @@ targetVersion: 22
 
 
 ##Version History
-__[Latest Version] 0.4.2__
+__[Latest Version] 0.4.3__
+* Change ListView to CustomListView using PlayerListAdapter
+  * PlayerListAdapter(Context, ArrayList<Player>)
+* Published 18 August, 2015
+
+__0.4.2__
 * Chart draw using animation effect
   * see animationDraw method in BarChart class
 * Modify Button to ImageButton (@ MainActivity)

@@ -18,11 +18,13 @@
                 android:id="@+id/player1_search"
                 android:layout_width="280dp"
                 android:layout_height="50dp" />
-            <Button
+            <ImageButton
                 android:id="@+id/player1_search_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Search"/>
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="#203CC8D9"
+                android:textColor="#3CC8D9"
+                android:src="@drawable/search_icon"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,11 +34,13 @@
                 android:id="@+id/player2_search"
                 android:layout_width="280dp"
                 android:layout_height="50dp" />
-            <Button
+            <ImageButton
                 android:id="@+id/player2_search_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Search"/>
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="#203CC8D9"
+                android:textColor="#3CC8D9"
+                android:src="@drawable/search_icon"/>
         </LinearLayout>
     </LinearLayout>
     <FrameLayout

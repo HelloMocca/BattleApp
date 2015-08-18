@@ -3,6 +3,7 @@ package org.nhnnext.android.battleapp;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.app.Activity;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,11 +48,11 @@ public class MatchingResultFragment extends Fragment {
         BarChart targetScoreBar = (BarChart) getActivity().findViewById(R.id.target_score_bar);
 
         List<FieldData> fieldDataList = new ArrayList<>();
-        fieldDataList.add(new FieldData("상대전적", new String[]{"25", "3승 7패", "7승 3패"}));
-        fieldDataList.add(new FieldData("최근5경기", new String[]{"60", "4승 1패", "3승 2패"}));
-        fieldDataList.add(new FieldData("종족전", new String[]{"50", "15승 8패", "14승 6패"}));
-        fieldDataList.add(new FieldData("우승", new String[]{"80", "2회", "0회"}));
-        fieldDataList.add(new FieldData("승자예측", new String[]{"76", "66%", "34%"}));
+        fieldDataList.add(new FieldData("Facing Record", new String[]{"25", "3승 7패", "7승 3패"}));
+        fieldDataList.add(new FieldData("Recent 5Games", new String[]{"60", "4승 1패", "3승 2패"}));
+        fieldDataList.add(new FieldData("Race Attitude", new String[]{"50", "15승 8패", "14승 6패"}));
+        fieldDataList.add(new FieldData("Price Count", new String[]{"80", "2회", "0회"}));
+        fieldDataList.add(new FieldData("Win Rate", new String[]{"76", "66%", "34%"}));
         targetScoreBar.setItems(fieldDataList);
     }
 
@@ -94,6 +95,10 @@ public class MatchingResultFragment extends Fragment {
         TextView player2PlayIdView = (TextView) getActivity().findViewById(R.id.player2_playId);
         player1PlayIdView.setText(playerA.getPlayId());
         player2PlayIdView.setText(playerB.getPlayId());
+        ImageView player1RaceSymbolView = (ImageView) getActivity().findViewById(R.id.player1_race_symbol);
+        ImageView player2RaceSymbolView = (ImageView) getActivity().findViewById(R.id.player2_race_symbol);
+        player1RaceSymbolView.setImageResource(playerA.getRaceSymbol());
+        player2RaceSymbolView.setImageResource(playerB.getRaceSymbol());
         TextView player1TeamView = (TextView) getActivity().findViewById(R.id.player1_team);
         TextView player2TeamView = (TextView) getActivity().findViewById(R.id.player2_team);
         player1TeamView.setText(playerA.getTeam());

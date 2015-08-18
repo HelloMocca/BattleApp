@@ -36,6 +36,53 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/player1_playId"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="Player1 ID"/>
+                <ImageView
+                    android:id="@+id/player1_race_symbol"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="end"
+                    android:src="@drawable/terran_symbol"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:textStyle="bold"
+                android:textColor="#FFBB00"
+                android:gravity="center"
+                android:text="@string/label_player_id"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/player2_race_symbol"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/zerg_symbol"/>
+                <TextView
+                    android:id="@+id/player2_playId"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Player2 ID"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="horizontal">
             <TextView
                 android:id="@+id/player1_name"
                 android:layout_width="120dp"
@@ -47,35 +94,14 @@
                 android:layout_height="wrap_content"
                 android:padding="2dp"
                 android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#FFBB00"
                 android:text="@string/label_player_name"/>
             <TextView
                 android:id="@+id/player2_name"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="player2name"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/player1_playId"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="IDNS"/>
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:gravity="center"
-                android:text="@string/label_player_id"/>
-            <TextView
-                android:id="@+id/player2_playId"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="IDNS"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -93,6 +119,8 @@
                 android:layout_height="wrap_content"
                 android:padding="2dp"
                 android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="#FFBB00"
                 android:text="@string/label_player_team"/>
             <TextView
                 android:id="@+id/player2_team"
@@ -100,19 +128,6 @@
                 android:layout_height="wrap_content"
                 android:text="SAMSUNG Galaxy"/>
         </LinearLayout>
-
-        <!--<ImageView-->
-            <!--android:id="@+id/player1_image"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<ImageView-->
-            <!--android:id="@+id/versus_image"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<ImageView-->
-            <!--android:id="@+id/player2_image"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

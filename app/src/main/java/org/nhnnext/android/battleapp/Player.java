@@ -129,6 +129,29 @@ public class Player implements Parcelable{
         this.games = games;
     }
 
+    public int getRaceSymbol() {
+        switch (this.race.toLowerCase()) {
+            case "terran" : return R.drawable.terran_symbol;
+            case "zerg" : return R.drawable.zerg_symbol;
+            case "protoss" : return R.drawable.protoss_symbol;
+        }
+        return R.drawable.terran_symbol;
+    }
+
+    public int getTeamLogo() {
+        switch (this.team.toLowerCase()) {
+            case "kt rolster" : return R.drawable.ktrolster_logo;
+            case "samsung galaxy" : return R.drawable.samsunggalaxy_logo;
+            case "skt t1" : return R.drawable.skt1_logo;
+            case "cj entus" : return R.drawable.cjentus_logo;
+            case "jinair greenwings" : return R.drawable.jinair_logo;
+            case "prime" : return R.drawable.prime_logo;
+            case "mvp" : return R.drawable.mvp_logo;
+            case "sbenu" : return R.drawable.sbenu_logo;
+        }
+        return R.drawable.team_icon;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

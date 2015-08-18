@@ -11,8 +11,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.IdRes;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MatchingActivity extends FragmentActivity implements PlayerListFragment.OnPlayerSelectedListener {
@@ -67,8 +67,8 @@ public class MatchingActivity extends FragmentActivity implements PlayerListFrag
      * 플레이어의 정보를 요청하는 메서드
      */
     private void setViewEvent() {
-        Button p1SearchBtn = (Button) findViewById(R.id.player1_search_btn);
-        Button p2SearchBtn = (Button) findViewById(R.id.player2_search_btn);
+        ImageButton p1SearchBtn = (ImageButton) findViewById(R.id.player1_search_btn);
+        ImageButton p2SearchBtn = (ImageButton) findViewById(R.id.player2_search_btn);
 
         p1SearchBtn.setOnClickListener(new OnClickListener() {
             @Override

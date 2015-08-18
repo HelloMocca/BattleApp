@@ -11,15 +11,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class PlayerActivity extends Activity {
 
     private EditText searchText;
     private ListView listView;
+    private ArrayList<Player> players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,13 @@ public class PlayerActivity extends Activity {
     private void onSearch() {
         String query = searchText.getText().toString();
         //TODO AsyncTask로 검색 결과 요청
+        players = new ArrayList<>();
+        players.add(new Player(0,"이승현","Life","Zerg","KT Rolster", 3));
+        players.add(new Player(1,"이영호","Flash","Terran","KT Rolster", 1));
+        players.add(new Player(2,"이원표","Curious","Zerg","SBENU", 1));
+        players.add(new Player(3,"이제동","JAEDONG","Zerg","Evil Genius", 0));
+        players.add(new Player(4,"이주경","Sona","Terran","CJ ENTUS", 0));
+        players.add(new Player(5,"원이삭","Parting","Protoss","Yoe Flash Wolves", 1));
         onListRender();
     }
 
@@ -97,8 +106,7 @@ public class PlayerActivity extends Activity {
      * 검색 결과를 ListView에 그려주는 메서드
      */
     private void onListRender() {
-        String[] playerList = {"임요환","홍진호","이영호","송병구"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, playerList);
+        PlayerListAdapter adapter = new PlayerListAdapter(this, players);
         listView.setAdapter(adapter);
     }
 }

@@ -81,7 +81,7 @@ public class BarChart extends View {
             paint.setTextSize(60);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(Color.YELLOW);
-            canvas.drawText(bar.getTitle(), this.getMeasuredWidth()/2, currBaseLine+BAR_HEIGHT-10, paint);
+            canvas.drawText(bar.getTitle(), this.getMeasuredWidth()/2, currBaseLine+BAR_HEIGHT-13, paint);
             paint.setColor(Color.WHITE);
             paint.setTextSize(50);
             if (!bar.getLeftWord().equals("")) {
