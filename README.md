@@ -8,7 +8,15 @@ targetVersion: 22
 
 
 ##Version History
-__[Latest Version] 0.5.1__
+__[Latest Version] 0.6.1__
+* Remove unabled activities and layout
+* Show winner namd as #FFBB00 color at game list
+* Exist Bug
+  * The Activity restart when searching player first time.
+  * app OOM when scrolling league's gamelist(LeagueArchiveActivity)
+* Published 27 August, 2015
+
+__0.5.1__
 * Add Volley Library for HTTP Request.
 * Add Gson Library for parsing JSON data.
 * MainActivity Modifed

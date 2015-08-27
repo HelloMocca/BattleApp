@@ -19,6 +19,11 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.nhnnext.android.battleapp.model.Game;
+import org.nhnnext.android.battleapp.model.Player;
+import org.nhnnext.android.battleapp.util.GsonRequest;
+import org.nhnnext.android.battleapp.util.VolleySingleton;
+
 public class MatchingActivity extends FragmentActivity implements PlayerListFragment.OnPlayerSelectedListener {
 
     public static final String PLAYER_A = "PLAYER_A";

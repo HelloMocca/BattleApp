@@ -1,4 +1,4 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.util;
 
 /**
  * Gson Request

@@ -1,4 +1,4 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.model;
 
 /**
  * Created by mocca on 2015. 8. 6..
@@ -8,8 +8,9 @@ package org.nhnnext.android.battleapp;
 import android.os.Parcelable;
 import android.os.Parcel;
 
+import org.nhnnext.android.battleapp.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Player implements Parcelable{
 

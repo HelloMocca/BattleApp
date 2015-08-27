@@ -1,4 +1,4 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.model;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Game {
     private String player1;
     private String player2;
+    private String winnerName;
     private String leagueName;
     private int round;
     private int gameSet;
@@ -31,6 +32,14 @@ public class Game {
 
     public void setPlayer2(String player2) {
         this.player2 = player2;
+    }
+
+    public void setWinnerName(String winnerName) {
+        this.winnerName = winnerName;
+    }
+
+    public String getWinnerName() {
+        return winnerName;
     }
 
     public String getLeagueName() {

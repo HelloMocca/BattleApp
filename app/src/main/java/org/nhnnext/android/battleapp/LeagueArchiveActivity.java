@@ -7,14 +7,17 @@ package org.nhnnext.android.battleapp;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import org.w3c.dom.Text;
+import org.nhnnext.android.battleapp.adapter.GameListAdapter;
+import org.nhnnext.android.battleapp.model.Game;
+import org.nhnnext.android.battleapp.model.League;
+import org.nhnnext.android.battleapp.util.GsonRequest;
+import org.nhnnext.android.battleapp.util.VolleySingleton;
 
 import java.util.ArrayList;
 
@@ -79,9 +82,8 @@ public class LeagueArchiveActivity extends Activity {
         leagueDateView.setText(league.getOpenDate());
         if (league.getWinnerPlayer() != null) {
             leagueWinnerView.setText(league.getWinnerPlayer().getName());
-        }
-        if (league.getWinnerPlayer().equals(" ")) {
-
+        } else {
+            leagueWinnerView.setText("");
         }
     }
 
@@ -93,8 +95,7 @@ public class LeagueArchiveActivity extends Activity {
                 new Response.Listener<Game.GameList>() {
                     @Override
                     public void onResponse(Game.GameList response) {
-                        games = response.getGames();
-                        onListRender(games);
+                        onListRender(response);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -103,11 +104,11 @@ public class LeagueArchiveActivity extends Activity {
                 Log.d("Volley Error", volleyError.toString());
             }
         });
-        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+        VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
 
-    private void onListRender(ArrayList<Game> games) {
-        GameListAdapter adapter = new GameListAdapter(this, games);
-        listView.setAdapter(adapter);
+    private void onListRender(Game.GameList response) {
+        games = response.getGames();
+        listView.setAdapter(new GameListAdapter(this, games));
     }
 }

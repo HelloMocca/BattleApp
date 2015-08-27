@@ -20,6 +20,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
 
+import org.nhnnext.android.battleapp.adapter.GameListAdapter;
+import org.nhnnext.android.battleapp.model.FieldData;
+import org.nhnnext.android.battleapp.model.Game;
+import org.nhnnext.android.battleapp.model.Player;
+import org.nhnnext.android.battleapp.util.BarChart;
+import org.nhnnext.android.battleapp.util.GsonRequest;
+import org.nhnnext.android.battleapp.util.VolleySingleton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +50,7 @@ public class PlayerInfoActivity extends Activity {
         getViews();
         setViewEvent();
         player = getIntent().getExtras().getParcelable(PlayerActivity.PLAYER_EXTRA_KEY);
-        requestQueue = VolleySingleton.getInstance(getApplicationContext()).getRequestQueue();
+        requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
         requestPlayerInfo();
         requestPlayerGames();
     }
@@ -130,10 +138,10 @@ public class PlayerInfoActivity extends Activity {
     private void onListRender(Game.GameList response) {
         BarChart playerRecordChart = (BarChart) findViewById(R.id.player_record_chart);
         List<FieldData> fieldDataList = new ArrayList<>();
-        fieldDataList.add(new FieldData("", new String[]{Float.toString( response.getWinRate() * 100 ),"Total Score", response.getWin()+"W "+response.getLose()+"L"}));
+        fieldDataList.add(new FieldData("", new String[]{Float.toString(response.getWinRate() * 100), "Total Score", response.getWin() + "W " + response.getLose() + "L"}));
         fieldDataList.add(new FieldData("", new String[]{Float.toString( Float.intBitsToFloat(response.getVsTwin()) / Float.intBitsToFloat(response.getVsTwin()+response.getVsTlose()) * 100),"vs T", response.getVsTwin()+"W "+response.getVsTlose()+"L"}));
-        fieldDataList.add(new FieldData("", new String[]{Float.toString( Float.intBitsToFloat(response.getVsZwin()) / Float.intBitsToFloat(response.getVsZwin()+response.getVsZlose()) * 100),"vs Z", response.getVsZwin()+"W "+response.getVsZlose()+"L"}));
-        fieldDataList.add(new FieldData("", new String[]{Float.toString( Float.intBitsToFloat(response.getVsPwin()) / Float.intBitsToFloat(response.getVsPwin()+response.getVsPlose()) * 100),"vs P", response.getVsPwin()+"W "+response.getVsPlose()+"L"}));
+        fieldDataList.add(new FieldData("", new String[]{Float.toString( Float.intBitsToFloat(response.getVsZwin()) / Float.intBitsToFloat(response.getVsZwin() + response.getVsZlose()) * 100),"vs Z", response.getVsZwin()+"W "+response.getVsZlose()+"L"}));
+        fieldDataList.add(new FieldData("", new String[]{Float.toString( Float.intBitsToFloat(response.getVsPwin()) / Float.intBitsToFloat(response.getVsPwin() + response.getVsPlose()) * 100),"vs P", response.getVsPwin()+"W "+response.getVsPlose()+"L"}));
         playerRecordChart.setItems(fieldDataList);
 
         games = new ArrayList<Game>();

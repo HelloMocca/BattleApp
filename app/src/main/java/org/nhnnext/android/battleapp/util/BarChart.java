@@ -1,4 +1,4 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.util;
 
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
@@ -9,6 +9,9 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Canvas;
 import android.graphics.Bitmap;
+
+import org.nhnnext.android.battleapp.model.FieldData;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -77,7 +80,7 @@ public class BarChart extends View {
             paint.setColor(Color.parseColor("#050099"));
             canvas.drawRect(0, currBaseLine, getWidth(), currBaseLine + BAR_HEIGHT, paint);
             paint.setColor(Color.parseColor("#BC2424"));
-            canvas.drawRect(0, currBaseLine, getWidth() * (bar.getCurrValue()/100), currBaseLine + BAR_HEIGHT, paint);
+            canvas.drawRect(0, currBaseLine, getWidth() * (bar.getCurrValue() / 100), currBaseLine + BAR_HEIGHT, paint);
             paint.setTextSize(45);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(Color.YELLOW);

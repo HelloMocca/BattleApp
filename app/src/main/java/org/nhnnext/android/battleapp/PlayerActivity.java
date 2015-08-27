@@ -20,6 +20,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.nhnnext.android.battleapp.adapter.PlayerListAdapter;
+import org.nhnnext.android.battleapp.model.Player;
+import org.nhnnext.android.battleapp.util.GsonRequest;
+import org.nhnnext.android.battleapp.util.VolleySingleton;
+
 import java.util.ArrayList;
 
 public class PlayerActivity extends Activity {
@@ -33,20 +38,23 @@ public class PlayerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Player","OnCreate");
         setContentView(R.layout.activity_player);
         getViews();
         setViewEvent();
-        requestQueue = VolleySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+        requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d("Player", "OnStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("Player", "OnResume");
     }
 
     @Override
@@ -98,7 +106,6 @@ public class PlayerActivity extends Activity {
     private void onSearch() {
         String query = searchText.getText().toString();
         String url = "http://125.209.198.90/battleapp/players.php?q="+query;
-        players = new ArrayList<>();
         GsonRequest gsonRequest = new GsonRequest<Player.PlayerList>(url, Player.PlayerList.class, null, new Response.Listener<Player.PlayerList>() {
             @Override
             public void onResponse(Player.PlayerList response) {
@@ -111,7 +118,7 @@ public class PlayerActivity extends Activity {
                 Log.d("VolleyError", volleyError.getMessage());
             }
         });
-        VolleySingleton.getInstance(this).addToRequestQueue(gsonRequest);
+        requestQueue.add(gsonRequest);
     }
 
     /**

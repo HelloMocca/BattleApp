@@ -1,25 +1,26 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.NetworkImageView;
+import org.nhnnext.android.battleapp.R;
+import org.nhnnext.android.battleapp.model.Game;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by mocca on 2015. 8. 17..
  */
 public class GameListAdapter extends BaseAdapter {
 
-    private List<Game> gameList;
+    private ArrayList<Game> gameList;
     private LayoutInflater inflater;
-    public GameListAdapter(Context context, List<Game> gameList) {
+    public GameListAdapter(Context context, ArrayList<Game> gameList) {
         this.inflater = LayoutInflater.from(context);
         this.gameList = gameList;
     }
@@ -58,6 +59,13 @@ public class GameListAdapter extends BaseAdapter {
         holder.getLeagueNameView().setText(game.getLeagueName());
         holder.getPlayer1View().setText(game.getPlayer1());
         holder.getPlayer2View().setText(game.getPlayer2());
+        if (game.getWinnerName().equals(game.getPlayer1())) {
+            holder.getPlayer1View().setTextColor(Color.parseColor("#FFBB00"));
+            holder.getPlayer2View().setTextColor(Color.WHITE);
+        } else {
+            holder.getPlayer2View().setTextColor(Color.parseColor("#FFBB00"));
+            holder.getPlayer1View().setTextColor(Color.WHITE);
+        }
         holder.getRoundSetView().setText(game.getRoundSet());
         return convertView;
     }

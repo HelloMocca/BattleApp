@@ -10,8 +10,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.nhnnext.android.battleapp"
-    android:versionCode="51"
-    android:versionName="0.5.1" >
+    android:versionCode="61"
+    android:versionName="0.6.1" >
 
     <!-- API 4.1 (JellyBean) 이상 지원 -->
     <uses-sdk
@@ -57,60 +57,8 @@
         </activity>
 
         <!-- 리그 스케쥴 정보 Activity -->
-        <activity
-            android:name=".ScheduleActivity"
-            android:label="@string/title_activity_schedule"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:allowEmbedded="false"
-            android:alwaysRetainTaskState="false"
-            android:autoRemoveFromRecents="false"
-            android:clearTaskOnLaunch="false"
-            android:documentLaunchMode="never"
-            android:excludeFromRecents="false"
-            android:exported="false"
-            android:finishOnTaskLaunch="false"
-            android:hardwareAccelerated="false"
-            android:maxRecents="1"
-            android:multiprocess="false"
-            android:noHistory="false"
-            android:uiOptions="none"
-            android:windowSoftInputMode="stateUnspecified"
-            android:stateNotNeeded="true"
-            android:relinquishTaskIdentity="false">
-            <intent-filter>
-                <action android:name="org.nhnnext.android.battleapp.action.SCHEDULE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <!-- 현재 진행중인 리그 정보 Activity -->
-        <activity
-            android:name=".LeagueActivity"
-            android:label="@string/title_activity_league"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:allowEmbedded="false"
-            android:alwaysRetainTaskState="false"
-            android:autoRemoveFromRecents="false"
-            android:clearTaskOnLaunch="false"
-            android:documentLaunchMode="never"
-            android:excludeFromRecents="false"
-            android:exported="false"
-            android:finishOnTaskLaunch="false"
-            android:hardwareAccelerated="false"
-            android:maxRecents="1"
-            android:multiprocess="false"
-            android:noHistory="false"
-            android:uiOptions="none"
-            android:windowSoftInputMode="stateUnspecified"
-            android:stateNotNeeded="true"
-            android:relinquishTaskIdentity="false">
-            <intent-filter>
-                <action android:name="org.nhnnext.android.battleapp.action.LEAGUE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <!-- 선수 검색 Activity -->
         <activity

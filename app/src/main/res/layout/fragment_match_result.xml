@@ -133,7 +133,7 @@
         android:orientation="horizontal"
         android:padding="25dp">
         <view
-            class="org.nhnnext.android.battleapp.BarChart"
+            class="org.nhnnext.android.battleapp.util.BarChart"
             android:id="@+id/target_score_bar"
             android:minWidth="20dp"
             android:minHeight="500dp"

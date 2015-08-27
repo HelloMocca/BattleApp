@@ -16,6 +16,11 @@ import android.widget.ListView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.nhnnext.android.battleapp.adapter.LeagueListAdapter;
+import org.nhnnext.android.battleapp.model.League;
+import org.nhnnext.android.battleapp.util.GsonRequest;
+import org.nhnnext.android.battleapp.util.VolleySingleton;
+
 import java.util.ArrayList;
 
 public class LeagueListActivity extends Activity {
@@ -26,7 +31,6 @@ public class LeagueListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("LeagueActivity","onCreate");
         setContentView(R.layout.activity_league_list);
         getViews();
         setViewEvent();
@@ -36,7 +40,6 @@ public class LeagueListActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("LeagueActivity","onStart");
     }
 
     @Override
@@ -93,7 +96,7 @@ public class LeagueListActivity extends Activity {
                 Log.d("VolleyError", volleyError.getMessage());
             }
         });
-        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+        VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
 
     /**

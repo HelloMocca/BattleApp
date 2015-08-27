@@ -1,4 +1,4 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.util;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -7,6 +7,7 @@ import com.android.volley.Request;
 
 import android.content.Context;
 import android.util.LruCache;
+import android.util.Log;
 import android.graphics.Bitmap;
 
 /**
@@ -43,6 +44,7 @@ public class VolleySingleton {
 
     public static synchronized VolleySingleton getInstance(Context context) {
         if (instance == null) {
+            Log.d("VolleySingleton","Make Volley Instance");
             instance = new VolleySingleton(context);
         }
         return instance;

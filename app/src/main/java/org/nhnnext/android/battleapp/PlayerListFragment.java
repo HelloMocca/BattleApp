@@ -12,6 +12,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.nhnnext.android.battleapp.adapter.PlayerListAdapter;
+import org.nhnnext.android.battleapp.model.Player;
+import org.nhnnext.android.battleapp.util.GsonRequest;
+import org.nhnnext.android.battleapp.util.VolleySingleton;
+
 /**
  * Created by mocca on 2015. 7. 28..
  * Matching Activity에서 선수검색 결과를 출력하는 Fragment

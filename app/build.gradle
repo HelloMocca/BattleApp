@@ -8,8 +8,8 @@ android {
         applicationId "org.nhnnext.android.battleapp"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 51
-        versionName "0.5.1"
+        versionCode 61
+        versionName "0.6.1"
     }
     buildTypes {
         release {

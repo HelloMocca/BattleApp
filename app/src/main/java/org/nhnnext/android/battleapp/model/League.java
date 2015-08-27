@@ -1,4 +1,4 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package org.nhnnext.android.battleapp;
+package org.nhnnext.android.battleapp.model;
 
 /**
  * Created by mocca on 2015. 8. 11..

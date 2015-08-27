@@ -51,7 +51,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp">
         <view
-            class="org.nhnnext.android.battleapp.BarChart"
+            class="org.nhnnext.android.battleapp.util.BarChart"
             android:id="@+id/player_record_chart"
             android:minWidth="20dp"
             android:minHeight="150dp"
