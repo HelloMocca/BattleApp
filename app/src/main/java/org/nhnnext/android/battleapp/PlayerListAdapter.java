@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.android.volley.toolbox.NetworkImageView;
+
 import java.util.List;
 
 /**
@@ -16,7 +19,6 @@ public class PlayerListAdapter extends BaseAdapter {
 
     private List<Player> playerList;
     private LayoutInflater inflater;
-
     public PlayerListAdapter(Context context, List<Player> playerList) {
         this.inflater = LayoutInflater.from(context);
         this.playerList = playerList;
@@ -44,6 +46,7 @@ public class PlayerListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.player_list, parent, false);
             holder = new ViewHolder(
+                    (NetworkImageView) convertView.findViewById(R.id.player_list_player_profile),
                     (TextView) convertView.findViewById(R.id.player_list_playername),
                     (TextView) convertView.findViewById(R.id.player_list_playerid),
                     (TextView) convertView.findViewById(R.id.player_list_player_team),
@@ -54,6 +57,9 @@ public class PlayerListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        holder.getProfile().setImageUrl(Player.PROFILE_IMAGE_URL+player.getId()+".png", VolleySingleton.getInstance(convertView.getContext().getApplicationContext()).getImageLoader());
+        holder.getProfile().setDefaultImageResId(R.drawable.noprofile);
+        holder.getProfile().setErrorImageResId(R.drawable.noprofile);
         holder.getNameView().setText(player.getName());
         holder.getPlayIdView().setText(player.getPlayId());
         holder.getTeamView().setText(player.getTeam());
@@ -63,17 +69,22 @@ public class PlayerListAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
+        private NetworkImageView profile;
         private ImageView raceView;
         private TextView nameView;
         private TextView playIdView;
         private ImageView teamlogoView;
         private TextView teamView;
-        public ViewHolder(TextView nameView, TextView playIdView, TextView teamView, ImageView teamlogoView, ImageView raceView) {
+        public ViewHolder(NetworkImageView profile, TextView nameView, TextView playIdView, TextView teamView, ImageView teamlogoView, ImageView raceView) {
+            this.profile = profile;
             this.nameView = nameView;
             this.playIdView = playIdView;
             this.teamView = teamView;
             this.teamlogoView = teamlogoView;
             this.raceView = raceView;
+        }
+        public NetworkImageView getProfile() {
+            return this.profile;
         }
         public TextView getNameView() {
             return this.nameView;

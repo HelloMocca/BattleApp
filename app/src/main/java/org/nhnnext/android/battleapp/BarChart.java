@@ -74,23 +74,23 @@ public class BarChart extends View {
         for (i = 0; i < barList.size(); i++) {
             currBaseLine = i*(BAR_MARGIN+BAR_HEIGHT);
             Bar bar = barList.get(i);
-            paint.setColor(Color.parseColor("#605CD1E5"));
+            paint.setColor(Color.parseColor("#050099"));
             canvas.drawRect(0, currBaseLine, getWidth(), currBaseLine + BAR_HEIGHT, paint);
-            paint.setColor(Color.parseColor("#60F361DC"));
+            paint.setColor(Color.parseColor("#BC2424"));
             canvas.drawRect(0, currBaseLine, getWidth() * (bar.getCurrValue()/100), currBaseLine + BAR_HEIGHT, paint);
-            paint.setTextSize(60);
+            paint.setTextSize(45);
             paint.setTextAlign(Paint.Align.CENTER);
             paint.setColor(Color.YELLOW);
             canvas.drawText(bar.getTitle(), this.getMeasuredWidth()/2, currBaseLine+BAR_HEIGHT-13, paint);
             paint.setColor(Color.WHITE);
-            paint.setTextSize(50);
+            paint.setTextSize(45);
             if (!bar.getLeftWord().equals("")) {
                 paint.setTextAlign(Paint.Align.LEFT);
-                canvas.drawText(bar.getRightWord(), PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
+                canvas.drawText(bar.getLeftWord(), PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
             }
             if (!bar.getRightWord().equals("")) {
                 paint.setTextAlign(Paint.Align.RIGHT);
-                canvas.drawText(bar.getLeftWord(), this.getMeasuredWidth()-PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
+                canvas.drawText(bar.getRightWord(), this.getMeasuredWidth()-PADDING, currBaseLine+10+(BAR_HEIGHT/2), paint);
             }
         }
     }

@@ -8,7 +8,27 @@ targetVersion: 22
 
 
 ##Version History
-__[Latest Version] 0.4.3__
+__[Latest Version] 0.5.1__
+* Add Volley Library for HTTP Request.
+* Add Gson Library for parsing JSON data.
+* MainActivity Modifed
+  * Remove unable menu Button
+  * Remove Live Game status dashboard
+  * Change Button Design
+* PlayerInfoActivity
+  * Add BarChart View to show the player's game record.
+* LeagueListActivity
+  * League List data has provided from BattleApp Server API.
+  * App shows the playlist when user selects the league.
+* MatchingActivity
+  * App calculate the match result using 5 facts( total record, vs.each other, recent 5games, vs.opposing race, ).
+* Manifest
+  * All activity's launchmode changed to singleTop
+* Exist Bug
+  * The Activity restart when searching player first time.
+* Published 27 August, 2015
+
+__0.4.3__
 * Change ListView to CustomListView using PlayerListAdapter
   * PlayerListAdapter(Context, ArrayList<Player>)
 * Published 18 August, 2015

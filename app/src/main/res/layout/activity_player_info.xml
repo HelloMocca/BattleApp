@@ -9,16 +9,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp">
-        <ImageView
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/player_profile"
             android:layout_width="100dp"
             android:layout_height="105dp"
-            android:contentDescription="@string/content_desc_player_profile"
-            android:src="@drawable/noprofile"/>
+            android:contentDescription="@string/content_desc_player_profile"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/player_playid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFBB00"
+                android:text="@string/default_text_player_playid"/>
             <TextView
                 android:id="@+id/player_name"
                 android:layout_width="wrap_content"
@@ -26,27 +34,29 @@
                 android:layout_height="wrap_content"
                 android:text="@string/default_text_player_name"/>
             <TextView
-                android:id="@+id/player_playid"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_text_player_playid"/>
-            <TextView
                 android:id="@+id/player_race"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_text_player_race"/>
             <TextView
-                android:id="@+id/player_team"
+                android:id="@+id/player_team_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_text_player_team"/>
-            <TextView
-                android:id="@+id/player_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_text_player_country"/>
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+        <view
+            class="org.nhnnext.android.battleapp.BarChart"
+            android:id="@+id/player_record_chart"
+            android:minWidth="20dp"
+            android:minHeight="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

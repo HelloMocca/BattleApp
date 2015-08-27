@@ -10,8 +10,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.nhnnext.android.battleapp"
-    android:versionCode="43"
-    android:versionName="0.4.3" >
+    android:versionCode="51"
+    android:versionName="0.5.1" >
 
     <!-- API 4.1 (JellyBean) 이상 지원 -->
     <uses-sdk
@@ -60,7 +60,7 @@
         <activity
             android:name=".ScheduleActivity"
             android:label="@string/title_activity_schedule"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"
@@ -88,7 +88,7 @@
         <activity
             android:name=".LeagueActivity"
             android:label="@string/title_activity_league"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"
@@ -116,7 +116,7 @@
         <activity
             android:name=".PlayerActivity"
             android:label="@string/title_activity_player"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"
@@ -144,7 +144,7 @@
         <activity
             android:name=".PlayerInfoActivity"
             android:label="@string/title_activity_playerInfo"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"
@@ -172,7 +172,7 @@
         <activity
             android:name=".LeagueListActivity"
             android:label="@string/title_activity_leagueList"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"
@@ -200,7 +200,7 @@
         <activity
             android:name=".LeagueArchiveActivity"
             android:label="@string/title_activity_leagueArchive"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"
@@ -228,7 +228,7 @@
         <activity
             android:name=".MatchingActivity"
             android:label="@string/title_activity_virtualMatching"
-            android:launchMode="standard"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"

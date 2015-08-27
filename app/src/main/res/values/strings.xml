@@ -16,6 +16,9 @@
     <string name="default_text_player_race">Terran</string>
     <string name="default_text_player_team">KT Rolster</string>
     <string name="default_text_player_country">KOREA</string>
+    <string name="default_text_league_name">STARCRAFT2 STARLEAGUE 2015</string>
+    <string name="default_text_round_set">16강 2세트</string>
+    <string name="default_text_open_date">2015. 02. 05</string>
     <string name="label_player_name">NAME</string>
     <string name="label_player_id">ID</string>
     <string name="label_player_team">TEAM</string>

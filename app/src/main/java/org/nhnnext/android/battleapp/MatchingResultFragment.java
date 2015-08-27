@@ -3,11 +3,18 @@ package org.nhnnext.android.battleapp;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.NetworkImageView;
+
+import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -45,15 +52,7 @@ public class MatchingResultFragment extends Fragment {
         Player playerA = args.getParcelable(MatchingActivity.PLAYER_A);
         Player playerB = args.getParcelable(MatchingActivity.PLAYER_B);
         displayPlayer(playerA, playerB);
-        BarChart targetScoreBar = (BarChart) getActivity().findViewById(R.id.target_score_bar);
-
-        List<FieldData> fieldDataList = new ArrayList<>();
-        fieldDataList.add(new FieldData("Facing Record", new String[]{"25", "3승 7패", "7승 3패"}));
-        fieldDataList.add(new FieldData("Recent 5Games", new String[]{"60", "4승 1패", "3승 2패"}));
-        fieldDataList.add(new FieldData("Race Attitude", new String[]{"50", "15승 8패", "14승 6패"}));
-        fieldDataList.add(new FieldData("Price Count", new String[]{"80", "2회", "0회"}));
-        fieldDataList.add(new FieldData("Win Rate", new String[]{"76", "66%", "34%"}));
-        targetScoreBar.setItems(fieldDataList);
+        requestTargetScore(playerA, playerB);
     }
 
     @Override
@@ -87,6 +86,14 @@ public class MatchingResultFragment extends Fragment {
     }
 
     private void displayPlayer(Player playerA, Player playerB) {
+        NetworkImageView player1Profile = (NetworkImageView) getActivity().findViewById(R.id.player1_profile);
+        NetworkImageView player2Profile = (NetworkImageView) getActivity().findViewById(R.id.player2_profile);
+        player1Profile.setImageUrl(Player.PROFILE_IMAGE_URL+playerA.getId()+".png", VolleySingleton.getInstance(getActivity().getApplicationContext()).getImageLoader());
+        player1Profile.setDefaultImageResId(R.drawable.noprofile);
+        player1Profile.setErrorImageResId(R.drawable.noprofile);
+        player2Profile.setImageUrl(Player.PROFILE_IMAGE_URL+playerB.getId()+".png", VolleySingleton.getInstance(getActivity().getApplicationContext()).getImageLoader());
+        player2Profile.setDefaultImageResId(R.drawable.noprofile);
+        player2Profile.setErrorImageResId(R.drawable.noprofile);
         TextView player1NameView = (TextView) getActivity().findViewById(R.id.player1_name);
         TextView player2NameView = (TextView) getActivity().findViewById(R.id.player2_name);
         player1NameView.setText(playerA.getName());
@@ -103,5 +110,125 @@ public class MatchingResultFragment extends Fragment {
         TextView player2TeamView = (TextView) getActivity().findViewById(R.id.player2_team);
         player1TeamView.setText(playerA.getTeam());
         player2TeamView.setText(playerB.getTeam());
+    }
+
+    private void requestTargetScore(final Player playerA, final Player playerB) {
+        String url = "http://125.209.198.90/battleapp/verdict.php?pid1="+playerA.getId()+"&pid2="+playerB.getId();
+        GsonRequest gsonRequest = new GsonRequest<Game.GameList>(url, Game.GameList.class, null, new Response.Listener<Game.GameList>() {
+            @Override
+            public void onResponse(Game.GameList response) {
+                displayVerdict(response, playerA, playerB);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("VolleyError", volleyError.getMessage());
+            }
+        });
+        VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(gsonRequest);
+    }
+
+    private void displayVerdict(Game.GameList response, Player playerA, Player playerB) {
+        BarChart targetScoreBar = (BarChart) getActivity().findViewById(R.id.target_score_bar);
+
+        List<FieldData> fieldDataList = new ArrayList<>();
+        String[] totalRecords = calcTotalRecords(playerA, playerB);
+        String[] eachOtherGames = new String[]{  Float.toString(response.getWinRate() * 100)  , response.getWin()+"W "+response.getLose()+"L", response.getLose()+"W "+response.getWin()+"L"};
+        String[] recent5Games = calcRecent5Games(playerA, playerB);
+        String[] opposingRace = calcOpposingRace(playerA, playerB);
+        fieldDataList.add(new FieldData("Total Records", totalRecords));
+        fieldDataList.add(new FieldData("vs. each other", eachOtherGames));
+        fieldDataList.add(new FieldData("Recent 5Games", recent5Games));
+        fieldDataList.add(new FieldData("Opposing race", opposingRace));
+        fieldDataList.add(new FieldData("Verdict", calcVerdict(totalRecords[0], eachOtherGames[0], recent5Games[0], opposingRace[0])));
+        targetScoreBar.setItems(fieldDataList);
+    }
+
+    private String[] calcTotalRecords(Player playerA, Player playerB) {
+        float playerAwins = Float.intBitsToFloat(playerA.getGameRecords().getWin());
+        float playerAlose = Float.intBitsToFloat(playerA.getGameRecords().getLose());
+        float playerBwins = Float.intBitsToFloat(playerB.getGameRecords().getWin());
+        float playerBlose = Float.intBitsToFloat(playerA.getGameRecords().getLose());
+        float playerArates = 0;
+        float playerBrates = 0;
+        if ((playerAwins + playerAlose) == 0) {
+            playerArates = 50;
+        } else {
+            playerArates = (playerAwins / (playerAwins+playerAlose)) * 100;
+        }
+        if ((playerBwins + playerBlose) == 0) {
+            playerBrates = 50;
+        } else {
+            playerBrates = (playerBwins / (playerBwins+playerBlose)) * 100;
+        }
+        float totalRates = (playerArates / (playerArates + playerBrates)) * 100;
+        return new String[] { Float.toString(totalRates),
+        playerA.getGameRecords().getWin()+"W "+playerA.getGameRecords().getLose()+"L",
+        playerB.getGameRecords().getWin()+"W "+playerB.getGameRecords().getLose()+"L"};
+    }
+
+    private String[] calcRecent5Games(Player playerA, Player playerB) {
+        float playerAwins = Float.intBitsToFloat(playerA.getGameRecords().getRecent5GamesWin());
+        float playerBwins = Float.intBitsToFloat(playerB.getGameRecords().getRecent5GamesWin());
+        float recent5GamesRate = 0;
+        if ((playerAwins + playerBwins) == 0) recent5GamesRate = 50;
+        recent5GamesRate = (playerAwins / (playerAwins + playerBwins)) * 100;
+        return new String[]{Float.toString(recent5GamesRate),
+                playerA.getGameRecords().getRecent5GamesWin()+"W "+playerA.getGameRecords().getRecent5GamesLose()+"L",
+                playerB.getGameRecords().getRecent5GamesWin()+"W "+playerB.getGameRecords().getRecent5GamesLose()+"L"
+        };
+    }
+
+    private String[] calcOpposingRace(Player playerA, Player playerB) {
+        int playerAwins = 0;
+        int playerBwins = 0;
+        int playerAlose = 0;
+        int playerBlose = 0;
+        switch (playerA.getRace()) {
+            case "Terran": playerBwins = playerB.getGameRecords().getVsTwin(); playerBlose = playerB.getGameRecords().getVsTlose(); break;
+            case "Zerg": playerBwins = playerB.getGameRecords().getVsZwin(); playerBlose = playerB.getGameRecords().getVsZlose(); break;
+            case "Protoss": playerBwins = playerB.getGameRecords().getVsPwin(); playerBlose = playerB.getGameRecords().getVsPlose(); break;
+        }
+        switch (playerB.getRace()) {
+            case "Terran": playerAwins = playerA.getGameRecords().getVsTwin(); playerAlose = playerA.getGameRecords().getVsTlose(); break;
+            case "Zerg": playerAwins = playerA.getGameRecords().getVsZwin(); playerAlose = playerA.getGameRecords().getVsZlose(); break;
+            case "Protoss": playerAwins = playerA.getGameRecords().getVsPwin(); playerAlose = playerA.getGameRecords().getVsPlose(); break;
+        }
+
+        float playerArates = 0;
+        if ((playerAwins + playerAlose) == 0) playerArates = 50;
+        else {
+            playerArates = (Float.intBitsToFloat(playerAwins) / Float.intBitsToFloat(playerAwins + playerAlose))*100;
+        }
+        float playerBrates = 0;
+        if ((playerBwins + playerBlose) == 0) playerBrates = 50;
+        else {
+            playerBrates = (Float.intBitsToFloat(playerBwins) / Float.intBitsToFloat(playerBwins + playerBlose))*100;
+        }
+        float totalRates = (playerArates / (playerArates+playerBrates)) * 100;
+        return new String[] {
+            Float.toString(totalRates),
+            playerAwins+"W "+playerAlose+"L",
+            playerBwins+"W "+playerBlose+"L"
+        };
+    }
+
+    private String[] calcVerdict(String totalGames, String eachGames, String recentGames, String oppsingRace) {
+        float TOTAL_GAME_WEIGHT = 1;
+        float EACH_GAME_WEIGHT = 5;
+        float RECENT_GAME_WEIGHT = 3;
+        float OPPOSING_RACE_WEIGHT = 2;
+        float playerAScore = (Float.parseFloat(totalGames)*TOTAL_GAME_WEIGHT) + (Float.parseFloat(eachGames)*EACH_GAME_WEIGHT) + (Float.parseFloat(recentGames)*RECENT_GAME_WEIGHT) + (Float.parseFloat(oppsingRace)*OPPOSING_RACE_WEIGHT);
+        float playerBScore = ((100 - Float.parseFloat(totalGames))*TOTAL_GAME_WEIGHT) + ((100 - Float.parseFloat(eachGames))*EACH_GAME_WEIGHT) + ((100 - Float.parseFloat(recentGames))*RECENT_GAME_WEIGHT) + ( (100 - Float.parseFloat(oppsingRace))*OPPOSING_RACE_WEIGHT);
+        float totalScore = 0;
+        if ((playerAScore + playerBScore) == 0) {
+            totalScore = 50;
+        } else {
+            totalScore = (playerAScore / (playerAScore+playerBScore)) * 100;
+        }
+        return new String[] {Float.toString(totalScore),
+                Float.toString(totalScore)+"%",
+                Float.toString(100-totalScore)+"%"
+        };
     }
 }

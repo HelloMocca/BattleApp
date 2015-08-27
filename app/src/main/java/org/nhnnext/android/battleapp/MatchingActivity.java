@@ -9,11 +9,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.IdRes;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 
 public class MatchingActivity extends FragmentActivity implements PlayerListFragment.OnPlayerSelectedListener {
 
@@ -75,7 +79,7 @@ public class MatchingActivity extends FragmentActivity implements PlayerListFrag
             public void onClick(View v) {
                 currPlayerStatus = MatchingActivity.PLAYER_A;
                 Bundle args = new Bundle();
-                args.putString(PlayerListFragment.QUERY,"player1");
+                args.putString(PlayerListFragment.QUERY, player1EditText.getText().toString());
                 replaceFragment(R.id.matching_activity_fragment_container, args, new PlayerListFragment());
             }
         });
@@ -85,7 +89,7 @@ public class MatchingActivity extends FragmentActivity implements PlayerListFrag
             public void onClick(View v) {
                 currPlayerStatus = MatchingActivity.PLAYER_B;
                 Bundle args = new Bundle();
-                args.putString(PlayerListFragment.QUERY, "player2");
+                args.putString(PlayerListFragment.QUERY, player2EditText.getText().toString());
                 replaceFragment(R.id.matching_activity_fragment_container, args, new PlayerListFragment());
             }
         });
@@ -96,20 +100,33 @@ public class MatchingActivity extends FragmentActivity implements PlayerListFrag
      * playerA 와 playerB 가 모두 선택되면 승률을 계산하는 predictGame() 을 호출한다.
      * @param player
      */
-    public void onPlayerSelected(Player player) {
-        if (currPlayerStatus.equals(MatchingActivity.PLAYER_A)) {
-            playerA = player;
-            player1EditText.setText(player.getName());
-        } else {
-            playerB = player;
-            player2EditText.setText(player.getName());
-        }
-        Toast.makeText(this, player.getName()+"선수가 선택되었습니다.", Toast.LENGTH_SHORT).show();
-        /** 선수 두명이 모두 선택되면 승자예측을 시작한다. **/
-        if (playerA != null && playerB != null) {
-            predictGame();
-        }
+    public void onPlayerSelected(final Player player) {
+        GsonRequest request = new GsonRequest<Game.GameList>("http://125.209.198.90/battleapp/playerRecords.php?pid=" + player.getId(), Game.GameList.class, null,
+                new Response.Listener<Game.GameList>() {
+                    @Override
+                    public void onResponse(Game.GameList response) {
+                        player.setGameRecords(response);
+                        if (currPlayerStatus.equals(MatchingActivity.PLAYER_A)) {
+                            playerA = player;
+                            player1EditText.setText(player.getName());
+                        } else {
+                            playerB = player;
+                            player2EditText.setText(player.getName());
+                        }
+                        /** 선수 두명이 모두 선택되면 승자예측을 시작한다. **/
+                        if (playerA != null && playerB != null) {
+                            predictGame();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("Volley Error", volleyError.getMessage());
+                Log.d("Volley Error", volleyError.toString());
+            }
+        });
 
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
     }
 
     /**

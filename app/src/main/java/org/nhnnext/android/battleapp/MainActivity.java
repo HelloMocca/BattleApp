@@ -1,6 +1,7 @@
 package org.nhnnext.android.battleapp;
 
 import android.app.Activity;
+import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,11 +35,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d("MainActivity","onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d("MainActivity","onStop");
     }
 
     @Override
@@ -50,20 +53,20 @@ public class MainActivity extends Activity {
      * 화면의 버튼에 대해 리스너를 세팅하는 메서드
      */
     private void setButtonEvent() {
-        ImageButton scheduleBtn = (ImageButton) findViewById(R.id.scheduleBtn);
-        scheduleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomAction.ACTION_SCHEDULE));
-            }
-        });
-        ImageButton leagueBtn = (ImageButton) findViewById(R.id.leagueBtn);
-        leagueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomAction.ACTION_LEAGUE));
-            }
-        });
+//        ImageButton scheduleBtn = (ImageButton) findViewById(R.id.scheduleBtn);
+//        scheduleBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(CustomAction.ACTION_SCHEDULE));
+//            }
+//        });
+//        ImageButton leagueBtn = (ImageButton) findViewById(R.id.leagueBtn);
+//        leagueBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(CustomAction.ACTION_LEAGUE));
+//            }
+//        });
         ImageButton playerBtn = (ImageButton) findViewById(R.id.playerBtn);
         playerBtn.setOnClickListener(new View.OnClickListener() {
             @Override

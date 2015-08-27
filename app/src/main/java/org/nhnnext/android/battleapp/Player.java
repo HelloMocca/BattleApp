@@ -7,6 +7,8 @@ package org.nhnnext.android.battleapp;
 
 import android.os.Parcelable;
 import android.os.Parcel;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements Parcelable{
@@ -16,17 +18,15 @@ public class Player implements Parcelable{
     private String playId;
     private String race;
     private String team;
-    private int winnerCount;
-    private float winrate;
-    private List<Game> games;
+    private Game.GameList gameRecords;
+    public static final String PROFILE_IMAGE_URL = "http://125.209.198.90/battleapp/profile/";
 
-    public Player(int id, String name, String playId, String race, String team, int winnerCount) {
+    public Player(int id, String name, String playId, String race, String team) {
         this.id = id;
         this.name = name;
         this.race = race;
         this.playId = playId;
         this.team = team;
-        this.winnerCount = winnerCount;
     }
 
 
@@ -40,9 +40,6 @@ public class Player implements Parcelable{
         out.writeString(playId);
         out.writeString(race);
         out.writeString(team);
-        out.writeInt(winnerCount);
-        out.writeFloat(winrate);
-        //out.writeList(games);
     }
 
     public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
@@ -61,8 +58,6 @@ public class Player implements Parcelable{
         playId = in.readString();
         race = in.readString();
         team = in.readString();
-        winnerCount = in.readInt();
-        winrate = in.readFloat();
     }
 
     public int getId() {
@@ -105,28 +100,12 @@ public class Player implements Parcelable{
         this.team = team;
     }
 
-    public int getWinnerCount() {
-        return this.winnerCount;
+    public Game.GameList getGameRecords() {
+        return this.gameRecords;
     }
 
-    public void setWinnerCount(int winnerCount) {
-        this.winnerCount = winnerCount;
-    }
-
-    public float getWinrate() {
-        return this.winrate;
-    }
-
-    public void setWinrate(float winrate) {
-        this.winrate = winrate;
-    }
-
-    public List<Game> getGames() {
-        return this.games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
+    public void setGameRecords(Game.GameList gameRecords) {
+        this.gameRecords = gameRecords;
     }
 
     public int getRaceSymbol() {
@@ -160,7 +139,6 @@ public class Player implements Parcelable{
         Player player = (Player) o;
 
         if (id != player.id) return false;
-        if (winnerCount != player.winnerCount) return false;
         if (name != null ? !name.equals(player.name) : player.name != null) return false;
         if (playId != null ? !playId.equals(player.playId) : player.playId != null) return false;
         if (race != null ? !race.equals(player.race) : player.race != null) return false;
@@ -175,7 +153,6 @@ public class Player implements Parcelable{
         result = 31 * result + (playId != null ? playId.hashCode() : 0);
         result = 31 * result + (race != null ? race.hashCode() : 0);
         result = 31 * result + (team != null ? team.hashCode() : 0);
-        result = 31 * result + winnerCount;
         return result;
     }
 
@@ -187,7 +164,13 @@ public class Player implements Parcelable{
                 ", playId='" + playId + '\'' +
                 ", race='" + race + '\'' +
                 ", team='" + team + '\'' +
-                ", winnerCount=" + winnerCount +
                 '}';
+    }
+
+    public class PlayerList {
+        private ArrayList<Player> players;
+        public ArrayList<Player> getPlayers() {
+            return players;
+        }
     }
 }
