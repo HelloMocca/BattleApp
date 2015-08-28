@@ -10,8 +10,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.nhnnext.android.battleapp"
-    android:versionCode="61"
-    android:versionName="0.6.1" >
+    android:versionCode="71"
+    android:versionName="0.7.1" >
 
     <!-- API 4.1 (JellyBean) 이상 지원 -->
     <uses-sdk
@@ -20,6 +20,7 @@
 
     <!-- 외부 인터넷 리소스 사용 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -27,6 +28,32 @@
         android:enabled="true"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar">
+        <!-- Splash Activity -->
+        <activity
+            android:name=".SplashActivity"
+            android:label="@string/title_activity_player"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:allowEmbedded="false"
+            android:alwaysRetainTaskState="false"
+            android:autoRemoveFromRecents="false"
+            android:documentLaunchMode="never"
+            android:excludeFromRecents="false"
+            android:exported="false"
+            android:finishOnTaskLaunch="false"
+            android:hardwareAccelerated="false"
+            android:maxRecents="1"
+            android:multiprocess="false"
+            android:noHistory="true"
+            android:uiOptions="none"
+            android:windowSoftInputMode="stateUnspecified"
+            android:stateNotNeeded="true"
+            android:relinquishTaskIdentity="false">
+            <intent-filter>
+                <action android:name="org.nhnnext.android.battleapp.action.SPLASH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <!-- 메인 화면을 위한 Activity -->
         <activity
@@ -56,10 +83,6 @@
             </intent-filter>
         </activity>
 
-        <!-- 리그 스케쥴 정보 Activity -->
-
-        <!-- 현재 진행중인 리그 정보 Activity -->
-
         <!-- 선수 검색 Activity -->
         <activity
             android:name=".PlayerActivity"
@@ -69,7 +92,6 @@
             android:allowEmbedded="false"
             android:alwaysRetainTaskState="false"
             android:autoRemoveFromRecents="false"
-            android:clearTaskOnLaunch="false"
             android:documentLaunchMode="never"
             android:excludeFromRecents="false"
             android:exported="false"

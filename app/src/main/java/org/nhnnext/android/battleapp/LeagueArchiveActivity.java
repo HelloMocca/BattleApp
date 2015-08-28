@@ -5,8 +5,12 @@ package org.nhnnext.android.battleapp;
  * 각 리그의 경기목록 Activity
  */
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -74,7 +78,15 @@ public class LeagueArchiveActivity extends Activity {
     }
 
     private void setViewEvent() {
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                //외부 동영상 링크
+                Uri uri = Uri.parse(games.get(position).getVodLink());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setLeagueInfo() {

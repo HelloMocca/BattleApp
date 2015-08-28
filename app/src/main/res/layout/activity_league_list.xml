@@ -6,6 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="org.nhnnext.android.battleapp.LeagueListActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="#454545"
+        android:text="@string/title_activity_leagueList"/>
     <ListView
         android:id="@+id/league_list_view"
         android:layout_width="match_parent"

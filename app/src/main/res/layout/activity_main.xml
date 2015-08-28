@@ -18,7 +18,7 @@
             android:padding="0sp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/playersearch_menu" />
+            />
         <ImageButton
             android:id="@+id/archiveBtn"
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:padding="0sp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/archive_menu"/>
+            />
         <ImageButton
             android:id="@+id/matchingBtn"
             android:layout_width="match_parent"
@@ -36,6 +36,6 @@
             android:padding="0sp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/matching_menu"/>
+            />
     </LinearLayout>
 </LinearLayout>

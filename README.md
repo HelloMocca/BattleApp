@@ -8,7 +8,23 @@ targetVersion: 22
 
 
 ##Version History
-__[Latest Version] 0.6.1__
+__[Latest Version] 0.7.1__
+* Follows BugFix
+  * The Activity restart when searching player first time.
+  * app OOM when scrolling league's gamelist(LeagueArchiveActivity)
+* Splash Activity added
+  * Splash Activity started when onCreate MainActivity.
+  * Splash Activity checks internet connection status.
+  * If internet has disconnected, Splash Activity shows the Alert Dialog.
+  * Splash Activity's no-History attribute is true.
+* BitmapDecoder
+  * BitmapDecode control Bitmap Resource to resizing.
+  * decodeBitmapFromResource get resource Id, width size and height size then return the efficiency resized Bitmap object.
+* NetworkManager
+  * NetworkManager contains connection check method and alert dialog method.
+* Published 28 August, 2015
+
+__0.6.1__
 * Remove unabled activities and layout
 * Show winner namd as #FFBB00 color at game list
 * Exist Bug
