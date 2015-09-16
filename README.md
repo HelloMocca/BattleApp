@@ -2,7 +2,14 @@
 BattleApp serves information of Starcraft League in Korea Republic of, written in Android SDK / Java. This Android Application Project developed as Android Studio IDE.
 See more information and fork at https://github.com/HelloMocca/BattleApp.git
 
-##Support Version
+#App Screen Shot
+![App Splash](http://hellomocca.github.io/projects/battleapp/splash.png)
+![App Main](http://hellomocca.github.io/projects/battleapp/shot_01.png)
+![Player Search](http://hellomocca.github.io/projects/battleapp/shot_02.png)
+![Player Information](http://hellomocca.github.io/projects/battleapp/shot_03.png)
+![Matching Simulation](http://hellomocca.github.io/projects/battleapp/shot_04.png)
+
+##Support Android SDK Version
 minSdkVersion: 16
 targetVersion: 22
 
